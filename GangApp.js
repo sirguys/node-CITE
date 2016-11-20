@@ -14,6 +14,22 @@ app.post('/mygang', (req, res)=>{
   res.send(`ชื่อแก๊งของคุณ คือ ${pre}${post}`);
 });
 
+const exRate = require('./currency.json');
+
+app.get('/currency', (req, res)=>{
+    let result = {};
+    for(let currency in exRate) {
+      result[currency] = exRate[currency].country;
+    }
+    res.json(result);
+});
+
+app.post('/exchange', (req,res)=>{
+  const baht = req.body.baht;
+  const rate = exRate[req.body.currency].rate
+  res.json({amount: baht / rate, rate: rate});
+});
+
 app.get('/', (req, res)=>{
   res.send('Hello world!');
 });
