@@ -6,6 +6,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
+app.get('/', (req, res)=>{
+  res.send('Hello world!');
+});
+
 const gang = require('./gang.json');
 
 app.post('/mygang', (req, res)=>{
@@ -28,10 +32,6 @@ app.post('/exchange', (req,res)=>{
   const baht = req.body.baht;
   const rate = exRate[req.body.currency].rate
   res.json({amount: baht / rate, rate: rate});
-});
-
-app.get('/', (req, res)=>{
-  res.send('Hello world!');
 });
 
 app.get('/hello', (req, res)=>{
