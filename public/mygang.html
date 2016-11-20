@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Gang</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <form action="http://localhost:3000/mygang" method="post">
+            เลือกวันเกิด
+            <select name="date"></select>
+            เลือกเดือนเกิด
+            <select name="month">
+                <option value="0">ม.ค.</option>
+                <option value="1">ก.พ.</option>
+                <option value="2">มี.ค.</option>
+                <option value="3">เม.ย.</option>
+                <option value="4">พ.ค.</option>
+                <option value="5">มิ.ย.</option>
+                <option value="6">ก.ค.</option>
+                <option value="7">ส.ค.</option>
+                <option value="8">ก.ย.</option>
+                <option value="9">ต.ค.</option>
+                <option value="10">พ.ย.</option>
+                <option value="11">ธ.ค.</option>
+            </select>
+            <button>ชื่อแก็ง คือ</button>
+        </form>
+        <script>
+            for(let i = 0; i < 31; i++) {
+                let date = document.forms[0].date;
+                let opt = document.createElement('option');
+                opt.value = i;
+                opt.innerHTML = i+1;
+                date.appendChild(opt);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exchange</title>
+        <meta charset="UTF-8"/>
+        <script src="js/jquery-3.1.1.min.js"></script>
+    </head>
+    <body>
+        เงิน <input type="number" min="0" id="baht"/> บาท แลกเป็น
+        <select id="currency"></select>
+        <button onClick="exchange()">ได้</button> <span id="result"></span>
+        <script>
+            let exchange = ()=>{
+                const currency = $('#currency').val();
+                $.post('/exchange', {baht: $('#baht').val(), currency: currency}, (data)=>{
+                    $('#result').html(`${Math.round(data.amount)} ${currency} (อัตราแลกเปลี่ยน ${data.rate})`);
+                });
+            };
+            $.get('/currency', (data)=>{
+                let $currency = $('#currency');
+                for(let key in data) {
+                    $currency.append(`<option value="${key}">${data[key]}</option>`);
+                }
+            });
+        </script>
+    </body>
+</html>
